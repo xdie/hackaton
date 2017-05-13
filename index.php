@@ -1,7 +1,7 @@
 <?php
 include 'vendor/autoload.php';
 
-
+require 'api/routes/route.campanias.php';
 
 
 
