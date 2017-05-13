@@ -3,10 +3,10 @@
  * Slim - a micro PHP 5 framework
  *
  * @author      Josh Lockhart <info@slimframework.com>
- * @copyright   2011-2017 Josh Lockhart
+ * @copyright   2011 Josh Lockhart
  * @link        http://www.slimframework.com
  * @license     http://www.slimframework.com/license
- * @version     2.6.4
+ * @version     2.4.2
  * @package     Slim
  *
  * MIT LICENSE
@@ -169,9 +169,9 @@ class Request
             return true;
         } elseif (isset($this->headers['X_REQUESTED_WITH']) && $this->headers['X_REQUESTED_WITH'] === 'XMLHttpRequest') {
             return true;
+        } else {
+            return false;
         }
-
-        return false;
     }
 
     /**
@@ -268,7 +268,7 @@ class Request
         }
         if ($key) {
             if (isset($this->env['slim.request.form_hash'][$key])) {
-                return $this->env['slim.request.form_hash'][$key];
+            	return $this->env['slim.request.form_hash'][$key];
             } else {
                 return $default;
             }
@@ -399,6 +399,12 @@ class Request
         return $this->env['slim.input'];
     }
 
+    public function setBody($slim_data)
+    {
+    	 $this->env['slim.request.form_hash'] = $slim_data;
+    	 $this->env['slim.input'] = http_build_query($slim_data);
+    }
+    
     /**
      * Get Content Type
      * @return string|null
@@ -474,14 +480,10 @@ class Request
     public function getHost()
     {
         if (isset($this->env['HTTP_HOST'])) {
-            if(preg_match('/^(\[[a-fA-F0-9:.]+\])(:\d+)?\z/', $this->env['HTTP_HOST'], $matches)) {
-                return $matches[1];
-            } else {
-                if (strpos($this->env['HTTP_HOST'], ':') !== false) {
-                    $hostParts = explode(':', $this->env['HTTP_HOST']);
+            if (strpos($this->env['HTTP_HOST'], ':') !== false) {
+                $hostParts = explode(':', $this->env['HTTP_HOST']);
 
-                    return $hostParts[0];
-                }
+                return $hostParts[0];
             }
 
             return $this->env['HTTP_HOST'];

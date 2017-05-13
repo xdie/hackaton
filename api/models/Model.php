@@ -14,7 +14,7 @@ class Model {
 
 	protected function __construct() {
 		if (!isset($this->db)) {
-			$this->db = PDO_Wrapper::getInstance();
+			$this->db = new MysqliDb('localhost','root','kreator.22','hackaton');
 
 			if (!isset($this->dbe))
 				$this->dbe = PDO_Wrapper_Extended::getInstance();

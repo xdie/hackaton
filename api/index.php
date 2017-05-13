@@ -1,10 +1,11 @@
 <?php
-require '../lib/config.php';
-require '../lib/db/PDO_Wrapper.php';
-require '../lib/db/PDO_Wrapper_Extended.php';
+header('Content-Type: application/json');
 
-require 'models/Model.php';
-require 'models/Campania.php';
+require '../lib/db/MysqliDb.php';
+require '../lib/config.php';
+
+//require 'models/Model.php';
+//require 'models/Campania.php';
 
 /**
  * Step 1: Require the Slim Framework
@@ -37,6 +38,14 @@ $app = new \Slim\Slim();
  * is an anonymous function.
  */
 
+require '../lib/Slim/Exception/Request_Exception.php';
+require '../lib/Slim/jsonAPI/JsonApiException.php';
+require '../lib/Slim/jsonAPI/JsonApiMiddleware.php';
+require '../lib/Slim/jsonAPI/JsonApiView.php';
+
+$app->view(new \JsonApiView());
+$app->add(new \JsonApiMiddleware());
+
 // GET route
 $app->group('/entidades', function() use($app) {
     $app->get('/', function() use($app) {
@@ -50,14 +59,12 @@ $app->group('/entidades', function() use($app) {
 
 $app->group('/campanias', function() use($app) {
     $app->get('/', function() use($app) {
-        $oCampania = Campania::getInstance();
-        $aCampanias = $oCampania->get();
-
+		$result = $db->get('campanias'); 
         $app->render(200, array(
             'code' => 200,
             'status' => 'success',
             'error' => false,
-            'data' => $aCampanias
+            'data' => $result
         ));
     });
 
