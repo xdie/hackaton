@@ -4,7 +4,11 @@ $app->group('/login', function() use($app, $db) {
     	$db->where('email', $app->request->post('email'));
     	$db->where('contraseña', md5($app->request->post('password')));
 
-    	$result = $db->get('usuarios');
-    	echo json_encode($result[0]);
+    	$result['data'] = $db->getOne('usuarios');
+
+        if($result['data'])
+        	$result['status'] = 200;
+
+    	echo json_encode($result);
     });
 });

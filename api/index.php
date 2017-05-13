@@ -6,6 +6,8 @@ include '../config.php';
 
 $app = new \Slim\Slim();
 
+$app->response()->header('Content-Type', 'application/json');
+
 if ($app->request->isPost() || $app->request->isPut()) {
   	$body = $app->request->getBody();
 	$params = json_decode($body, true);

@@ -4,17 +4,14 @@
 			$result['data'] = $db->get('campanias'); 
 	        if($result['data'])
 	        	$result['status'] = 200;
+	        echo json_encode($result);
 	    });
 
-	    $app->get('/:idCampania(/)', function($idCampania) use($app) {
-	        $oCampania = Campania::getInstance();
-	        $aCampania = $oCampania->get($idCampania);
-
-	        $app->render(200, array(
-	            'code' => 200,
-	            'status' => 'success',
-	            'error' => false,
-	            'data' => $aCampania
-	        ));
+	    $app->get('/:idCampania(/)', function($idCampania) use($app, $db) {
+	    	$db->where('id_campanias', $idCampania);
+			$result['data'] = $db->getOne('campanias'); 
+	        if($result['data'])
+	        	$result['status'] = 200;
+	        echo json_encode($result);
 	    });
 	});
