@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c96b6c53f9179912b7a037ccf8a06a78",
     "content-hash": "be96aabd9f14309072c29d2b41764472",
     "packages": [
         {
@@ -97,7 +96,7 @@
                 "rest",
                 "router"
             ],
-            "time": "2017-01-07 12:21:41"
+            "time": "2017-01-07T12:21:41+00:00"
         }
     ],
     "packages-dev": [],

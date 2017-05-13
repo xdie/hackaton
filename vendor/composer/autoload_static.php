@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb52071668d01313d11f35ce53c513771
+class ComposerStaticInit005402c83ce4faa8799630993c1c54ca
 {
     public static $files = array (
         '9c9a81795c809f4710dd20bec1e349df' => __DIR__ . '/..' . '/joshcam/mysqli-database-class/MysqliDb.php',
@@ -24,7 +24,7 @@ class ComposerStaticInitb52071668d01313d11f35ce53c513771
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInitb52071668d01313d11f35ce53c513771::$prefixesPsr0;
+            $loader->prefixesPsr0 = ComposerStaticInit005402c83ce4faa8799630993c1c54ca::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
