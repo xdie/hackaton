@@ -1,5 +1,6 @@
 <?php
 include 'vendor/autoload.php';
+include 'config.php';
 
 $app = new \Slim\Slim();
 
