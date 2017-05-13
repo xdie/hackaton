@@ -15,6 +15,7 @@ if ($app->request->isPost() || $app->request->isPut()) {
 }
 
 require 'routes/route.campanias.php';
+require 'routes/route.causas.php';
 require 'routes/route.login.php';
 
 $app->run();
