@@ -399,6 +399,12 @@ class Request
         return $this->env['slim.input'];
     }
 
+    public function setBody($slim_data)
+    {
+         $this->env['slim.request.form_hash'] = $slim_data;
+         $this->env['slim.input'] = http_build_query($slim_data);
+    }
+
     /**
      * Get Content Type
      * @return string|null

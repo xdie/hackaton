@@ -6,11 +6,13 @@ include '../config.php';
 
 $app = new \Slim\Slim();
 
+if ($app->request->isPost() || $app->request->isPut()) {
+  	$body = $app->request->getBody();
+	$params = json_decode($body, true);
+	$app->request()->setBody($params);
+}
+
 require 'routes/route.campanias.php';
 require 'routes/route.login.php';
-
-$app->get('/hello/:name', function ($name) {
-    echo "Hello, " . $name;
-});
 
 $app->run();
